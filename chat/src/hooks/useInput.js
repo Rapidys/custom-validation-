@@ -38,6 +38,17 @@ function useInput(initialValues,validatedSchema) {
             })
             return
         }
+        if(validatedSchema[name]?.match && value[validatedSchema[name]?.match] !== value[name]){
+            setError({
+                ...error,
+                [name]: {
+                    hasError:true,
+                    type:'notEqual',
+                    message:validatedSchema[name] ? validatedSchema[name]?.notValid : ''
+                }
+            })
+            return
+        }
         if (checkValidationType(name) && validatedSchema[name]) {
             setError({
                 ...error,

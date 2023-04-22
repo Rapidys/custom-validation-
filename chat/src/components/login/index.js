@@ -9,7 +9,8 @@ const Login = () => {
 
     const initialValues = {
         email:'',
-        password:''
+        password:'',
+        repeatPassword:''
     }
     const validatedSchema = {
         email:{
@@ -19,6 +20,11 @@ const Login = () => {
         },
         password:{
             required:'required field password',
+        },
+        repeatPassword:{
+            match:'password',
+            notValid:'password dont match',
+            required:'required field password2',
         }
     }
 
@@ -49,6 +55,16 @@ const Login = () => {
                         placeholder = {'Password'}
                         name = {'password'}
                         error = {error.password?.hasError && error.password?.message}
+                        style = {{marginBottom:'10px'}}
+                    />
+                    <TextField
+                        value={value.repeatPassword}
+                        onChange={handleChange}
+                        onBlur = {handleBlur}
+                        onFocus = {handleFocus}
+                        placeholder = {'repeat Password'}
+                        name = {'repeatPassword'}
+                        error = {error.repeatPassword?.hasError && error.repeatPassword?.message}
                         style = {{marginBottom:'10px'}}
                     />
                 </div>
